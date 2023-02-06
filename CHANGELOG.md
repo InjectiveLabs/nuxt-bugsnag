@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/JulianMar/nuxt-bugsnag/compare/v0.0.2...v0.0.3) (2023-02-06)
+
+
+### Features
+
+* removed hooks ([2fc469c](https://github.com/JulianMar/nuxt-bugsnag/commit/2fc469cdf1482178a8e1587b5438a72380338030))
+
 ### 0.0.2 (2023-02-06)
 
 
