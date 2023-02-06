@@ -9,6 +9,35 @@ import { browser, node } from '@bugsnag/source-maps'
 import { BrowserConfig } from '@bugsnag/js'
 
 const { resolve } = createResolver(import.meta.url)
+
+interface NodeUploadMultipleOpts {
+  apiKey: string
+  directory: string
+  appVersion?: string
+  codeBundleId?: string
+  overwrite?: boolean
+  projectRoot?: string
+  endpoint?: string
+  detectAppVersion?: boolean
+  requestOpts?: any
+  logger?: any
+  idleTimeout?: number
+}
+
+interface BrowserUploadMultipleOpts {
+  apiKey: string
+  baseUrl: string
+  directory: string
+  appVersion?: string
+  codeBundleId?: string
+  overwrite?: boolean
+  projectRoot?: string
+  endpoint?: string
+  detectAppVersion?: boolean
+  idleTimeout?: number
+  requestOpts?: any
+  logger?: any
+}
 export interface ModuleOptions {
   disabled: boolean
   publishRelease: boolean
@@ -22,6 +51,16 @@ export interface ModuleOptions {
         appVersion?: string
       }
     | Partial<BrowserConfig>
+}
+
+let nitroPublicConfig: BrowserUploadMultipleOpts = {
+  apiKey: '',
+  directory: '',
+  baseUrl: ''
+}
+let nitroServerConfig: NodeUploadMultipleOpts = {
+  apiKey: '',
+  directory: ''
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -79,43 +118,34 @@ export default defineNuxtModule<ModuleOptions>({
 
     nuxt.options.sourcemap = { server: true, client: true }
 
-    nuxt.addHooks({
-      'nitro:config': (config) => {
-        config.hooks = {
-          compiled: async (nitro) => {
-            nitro.logger.log('')
-            nitro.logger.start('upload of sourcemaps to bugsnag \n')
-            const promises: Promise<void>[] = []
+    nitroServerConfig = {
+      apiKey: options.config.apiKey!,
+      appVersion: options.config.appVersion,
+      directory: nuxt.options.serverDir,
+      logger: console,
+      overwrite: true,
+      projectRoot: options.projectRoot
+    }
 
-            promises.push(
-              node.uploadMultiple({
-                apiKey: options.config.apiKey!,
-                appVersion: options.config.appVersion,
-                directory: nitro.options.output.serverDir,
-                logger: nitro.logger,
-                overwrite: true,
-                projectRoot: options.projectRoot
-              })
-            )
+    nitroPublicConfig = {
+      apiKey: options.config.apiKey!,
+      appVersion: options.config.appVersion,
+      directory: nuxt.options.serverDir.replace('server', 'public'),
+      logger: console,
+      overwrite: true,
+      baseUrl: options.baseUrl
+    }
 
-            promises.push(
-              browser.uploadMultiple({
-                apiKey: options.config.apiKey!,
-                appVersion: options.config.appVersion,
-                directory: nitro.options.output.publicDir,
-                logger: nitro.logger,
-                overwrite: true,
-                baseUrl: options.baseUrl
-              })
-            )
+    nuxt.hook('build:done', async () => {
+      console.log('Source map upload to Bugsnag started \n')
 
-            await Promise.all(promises)
+      const promises = []
+      promises.push(node.uploadMultiple(nitroServerConfig))
+      promises.push(browser.uploadMultiple(nitroPublicConfig))
 
-            nitro.logger.log('')
-            nitro.logger.success('upload of sourcemaps to bugsnag \n')
-          }
-        }
-      }
+      await Promise.all(promises)
+
+      console.log('Source map upload to Bugsnag completed \n')
     })
   }
 })
