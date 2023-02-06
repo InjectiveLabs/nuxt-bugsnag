@@ -118,10 +118,12 @@ export default defineNuxtModule<ModuleOptions>({
 
     nuxt.options.sourcemap = { server: true, client: true }
 
+    const outputPath = `${nuxt.options.rootDir}/.output`
+
     nitroServerConfig = {
       apiKey: options.config.apiKey!,
       appVersion: options.config.appVersion,
-      directory: nuxt.options.serverDir,
+      directory: `${outputPath}/server`,
       logger: console,
       overwrite: true,
       projectRoot: options.projectRoot
@@ -130,7 +132,7 @@ export default defineNuxtModule<ModuleOptions>({
     nitroPublicConfig = {
       apiKey: options.config.apiKey!,
       appVersion: options.config.appVersion,
-      directory: nuxt.options.serverDir.replace('server', 'public'),
+      directory: `${outputPath}/public`,
       logger: console,
       overwrite: true,
       baseUrl: options.baseUrl
@@ -139,7 +141,7 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.hook('build:done', async () => {
       console.log('Source map upload to Bugsnag started \n')
 
-      const promises = []
+      const promises: Promise<any>[] = []
       promises.push(node.uploadMultiple(nitroServerConfig))
       promises.push(browser.uploadMultiple(nitroPublicConfig))
 
