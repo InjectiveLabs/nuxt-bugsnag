@@ -1,43 +1,14 @@
 import {
-  defineNuxtModule,
+  isNuxt3,
   addPlugin,
   createResolver,
-  isNuxt3,
+  defineNuxtModule,
   extendViteConfig
 } from '@nuxt/kit'
-import { browser, node } from '@bugsnag/source-maps'
 import { BrowserConfig } from '@bugsnag/js'
 
 const { resolve } = createResolver(import.meta.url)
 
-interface NodeUploadMultipleOpts {
-  apiKey: string
-  directory: string
-  appVersion?: string
-  codeBundleId?: string
-  overwrite?: boolean
-  projectRoot?: string
-  endpoint?: string
-  detectAppVersion?: boolean
-  requestOpts?: any
-  logger?: any
-  idleTimeout?: number
-}
-
-interface BrowserUploadMultipleOpts {
-  apiKey: string
-  baseUrl: string
-  directory: string
-  appVersion?: string
-  codeBundleId?: string
-  overwrite?: boolean
-  projectRoot?: string
-  endpoint?: string
-  detectAppVersion?: boolean
-  idleTimeout?: number
-  requestOpts?: any
-  logger?: any
-}
 export interface ModuleOptions {
   disabled: boolean
   publishRelease: boolean
@@ -51,16 +22,6 @@ export interface ModuleOptions {
         appVersion?: string
       }
     | Partial<BrowserConfig>
-}
-
-let nitroPublicConfig: BrowserUploadMultipleOpts = {
-  apiKey: '',
-  directory: '',
-  baseUrl: ''
-}
-let nitroServerConfig: NodeUploadMultipleOpts = {
-  apiKey: '',
-  directory: ''
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -117,37 +78,5 @@ export default defineNuxtModule<ModuleOptions>({
     }
 
     nuxt.options.sourcemap = { server: true, client: true }
-
-    const outputPath = `${nuxt.options.rootDir}/.output`
-
-    nitroServerConfig = {
-      apiKey: options.config.apiKey!,
-      appVersion: options.config.appVersion,
-      directory: `${outputPath}/server`,
-      logger: console,
-      overwrite: true,
-      projectRoot: options.projectRoot
-    }
-
-    nitroPublicConfig = {
-      apiKey: options.config.apiKey!,
-      appVersion: options.config.appVersion,
-      directory: `${outputPath}/public`,
-      logger: console,
-      overwrite: true,
-      baseUrl: options.baseUrl
-    }
-
-    nuxt.hook('build:done', async () => {
-      console.log('Source map upload to Bugsnag started \n')
-
-      const promises: Promise<any>[] = []
-      promises.push(node.uploadMultiple(nitroServerConfig))
-      promises.push(browser.uploadMultiple(nitroPublicConfig))
-
-      await Promise.all(promises)
-
-      console.log('Source map upload to Bugsnag completed \n')
-    })
   }
 })
