@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.2 (2023-02-06)
+
+
+### Features
+
+* add any type more changes to docs ([bb30d21](https://github.com/JulianMar/nuxt-bugsnag/commit/bb30d2169da5fbf83e689d955ee816dc519ec506))
+* add compability ([048620c](https://github.com/JulianMar/nuxt-bugsnag/commit/048620c093691fe6d040bc351bc3e13058d0ef2c))
+* add nuxt-kit integration ([51c9c48](https://github.com/JulianMar/nuxt-bugsnag/commit/51c9c48bb3cd038e9e71353bc75cf066b7b83523))
+* add prepare env ([793c9d6](https://github.com/JulianMar/nuxt-bugsnag/commit/793c9d637bcc4a0242bd6c2ba5801e512c325226))
+* add test ([3a23005](https://github.com/JulianMar/nuxt-bugsnag/commit/3a230053d257708d4a405ce076754274e1e52025))
+* cleanup ([2e92d8e](https://github.com/JulianMar/nuxt-bugsnag/commit/2e92d8e3fcb9db8e0d50fbe76549537a833fc665))
+* make project root configurable ([#36](https://github.com/JulianMar/nuxt-bugsnag/issues/36)) ([6670481](https://github.com/JulianMar/nuxt-bugsnag/commit/66704812c53033b8f78c10414809c4bfdac4ded0))
+* make usable in nuxt bridge ([3a96b0e](https://github.com/JulianMar/nuxt-bugsnag/commit/3a96b0e8568a38825acd0e6934889712abaecabb))
+* move to github actions ([c133cca](https://github.com/JulianMar/nuxt-bugsnag/commit/c133cca5665722a34c0bcbff12c5de1ed550c9eb))
+* rename workflow ([f424280](https://github.com/JulianMar/nuxt-bugsnag/commit/f42428096c3ef27f45c3aa25b2add300a6475673))
+* support for nuxt rc 10 ([da4b9da](https://github.com/JulianMar/nuxt-bugsnag/commit/da4b9da56ce1e15584166bb5235936a70c6fb63f))
+* update deps ([9e21725](https://github.com/JulianMar/nuxt-bugsnag/commit/9e21725d067fb6f4bc30210404782222384b7ed1))
+* update deps ([20f8409](https://github.com/JulianMar/nuxt-bugsnag/commit/20f840931e3d228e4f7fdfaf018df0c5492a1338))
+* update deps ([b102bcc](https://github.com/JulianMar/nuxt-bugsnag/commit/b102bccd0b442e495490d6e0903b65f984d6aa6c))
+* update module to be more in sync ([df6d81c](https://github.com/JulianMar/nuxt-bugsnag/commit/df6d81c4130623db259acb5e91d3cc435df7a582))
+* update to newest verison of nuxt ([4b910ec](https://github.com/JulianMar/nuxt-bugsnag/commit/4b910ec551f945a47641b686fcf10bfbe2127a3c))
+* update to v 5.0.0 ([a466e7a](https://github.com/JulianMar/nuxt-bugsnag/commit/a466e7aae060826ea249b3f7ba007e88f3486c77))
+* use correct file ([d8805d4](https://github.com/JulianMar/nuxt-bugsnag/commit/d8805d45e95dacb50b65f9e1c79ee5d16e410c2b))
+* use json ([f2524b4](https://github.com/JulianMar/nuxt-bugsnag/commit/f2524b4792d98c51905be1cee9830963f4dc7309))
+
+
+### Bug Fixes
+
+* activate nitro ([ad0af50](https://github.com/JulianMar/nuxt-bugsnag/commit/ad0af501cd4dad69e1caf8e3a0b98ecac5c9a165))
+* add more tests ([19f723c](https://github.com/JulianMar/nuxt-bugsnag/commit/19f723c9311302138f739212971587b0c97bc1a7))
+* add prettier config and reformat ([67e1645](https://github.com/JulianMar/nuxt-bugsnag/commit/67e1645067c39c1c981270cd7c6b40cabc9e980b))
+* for baseUrl ([884a211](https://github.com/JulianMar/nuxt-bugsnag/commit/884a211cee4c04c4b3777fd6a5acde1586a3376e))
+* module ts error ([6999173](https://github.com/JulianMar/nuxt-bugsnag/commit/6999173e299000654e283d9a5610354e8c409081))
+* name ([f0204ef](https://github.com/JulianMar/nuxt-bugsnag/commit/f0204ef82a805bf951e0ca7437f97205b11462a3))
+* nuxt2 usage ([e0f69a8](https://github.com/JulianMar/nuxt-bugsnag/commit/e0f69a8c2a06b5cabca7d2e6149d3300cbc5521c))
+* optimizing deps if publishRelease is false ([#35](https://github.com/JulianMar/nuxt-bugsnag/issues/35)) ([a2b29d8](https://github.com/JulianMar/nuxt-bugsnag/commit/a2b29d85cdb7138c5cc104e19ef94d69f1979051))
+* path ([d71b038](https://github.com/JulianMar/nuxt-bugsnag/commit/d71b038b410957955b1d663062fc6e6c7c40c8e8))
+* remove 14 ([4d227d3](https://github.com/JulianMar/nuxt-bugsnag/commit/4d227d3fc6c363aa3e8f3c60d5a56a3988e622be))
+* ts errors ([c5e1e29](https://github.com/JulianMar/nuxt-bugsnag/commit/c5e1e2979fa222c1ff7734a11fd42ebbec054b82))
+* upload sitemap for static page generation ([e738a3b](https://github.com/JulianMar/nuxt-bugsnag/commit/e738a3b15bf7ff27a723409bf4ac6bcd43893681))
+* vuePlugin handling ([1d6d0c1](https://github.com/JulianMar/nuxt-bugsnag/commit/1d6d0c1fc766cb4d48d4377251f0d36a05d80c4e))
+
 ## [5.9.0](https://github.com/JulianMar/nuxt-bugsnag/compare/v5.8.0...v5.9.0) (2022-11-11)
 
 
