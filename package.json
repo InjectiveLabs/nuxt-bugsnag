@@ -1,6 +1,6 @@
 {
-  "name": "nuxt-bugsnag",
-  "version": "8.0.0",
+  "name": "@injectivelabs/nuxt-bugsnag",
+  "version": "0.1.0",
   "license": "MIT",
   "type": "module",
   "repository": {
